@@ -1,7 +1,0 @@
-INDEX VERSION 1.3+C:\Users\user\Documents\GitHub\TMA\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-70384929.index
-596660553.index
-1074099674.index
-2552446147.index
-3527477615.index
-767288822.index
