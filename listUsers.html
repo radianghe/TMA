@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+-->
+    
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Team Lead Menu</title>
+</head>
+<body>
+    <table border=1 align="center">
+        <thead>
+            <tr>
+                <th>ID angajat</th>
+                <th>Nume Team Lead</th>
+                <th>Nume angajat</th>
+                <th>Tip training</th>
+                <th>Nume curs</th>
+                <th>Tip curs</th>
+                <th>Nume provider</th>
+                <th>Link</th>
+                <th>Cost</th>
+                <th>Moneda</th>
+                <th>An</th>
+                <th>Perioada</th>
+                <th>Numar zile</th>
+                <th>Moment desfasurare</th>
+                <th>Suport pontaj</th>
+                <th>Email</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach items="${traininguri}" var="training">
+                <tr>
+                    <td><c:out value="${training.getString(id)}" /></td>
+                    <td><c:out value="${training.getString(numeTL)}" /></td>
+                    <td><c:out value="${training.getString(numeUSER)}" /></td>
+                    <td><c:out value="${training.getString(tipTRAINING)}" /></td>
+                    <td><c:out value="${training.getString(numeCURS)}" /></td>
+                    <td><c:out value="${training.getString(numePROVIDER)}" /></td>
+                    <td><c:out value="${training.getString(link)}" /></td>
+                    <td><c:out value="${training.getString(moneda)}" /></td>
+                    <td><c:out value="${training.getString(cost)}" /></td>
+                    <td><c:out value="${training.getString(an)}" /></td>
+                    <td><c:out value="${training.getString(perioada)}" /></td>
+                    <td><c:out value="${training.getString(numarZILE)}" /></td>
+                    <td><c:out value="${training.getString(tipCURS)}" /></td>
+                    <td><c:out value="${training.getString(moment)}" /></td>
+                    <td><c:out value="${training.getString(suport)}" /></td>
+                    <td><c:out value="${training.getString(mail)}" /></td>
+                    <td><c:out value="${training.getString(statut)}" /></td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</body>
+</html>
