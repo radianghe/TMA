@@ -1,0 +1,198 @@
+<!DOCTYPE hmtl>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="Styles.css">
+<link rel="stylesheet" type="text/css" href="bootstrap.css">
+
+
+
+</head>
+
+<body>
+
+<ul>
+  <li><a href="C:/Users/user/Desktop/app/homeuser.html">HOME</a></li>
+  <li><a href="#news" id="2" onclick="traininguri()">TRAININGURI</a></li>
+  <li><a href="" id="4" onclick="C:\Users\user\Desktop\app\Cerere.html">CERERE NOUA</a></li>
+  <li><a href="#contact" id="3" onclick="contul_meu()">CONTUL MEU</a></li>
+</ul>
+
+
+
+
+<div class="container">
+
+ <div class="container" id="container1">
+ 
+        <div class="row centered-form">
+            <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">CERERE NOUA TRAINING </h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" method="post">
+                            <div class="form-group">
+							
+                                
+								<select  required="required" class="form-control input-sm"  class="form-control placeholder" maxlength="40">
+                                    <option hidden >Team Leader</option>
+                                    <option value="1">one</option>
+                                    <option value="2">two</option>
+                                    <option value="3">three</option>
+                                    <option value="other">other, please specify:</option>
+                                 </select>
+									
+								
+								
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" name="nume" id="nume" class="form-control input-sm" placeholder="Nume" maxlength="40" required>
+                            </div>
+							 <div class="form-group">
+                                <input type="text" name="prenume" id="prenume" class="form-control input-sm" placeholder="Prenume" maxlength="40" required>
+                            </div>
+							
+                            <div class="form-group">
+                                
+								<select required="required" class="form-control input-sm" placeholder="Tip Training">
+								    <option hidden >Tip Training</option>
+                                    <option value="0">Curs</option>
+                                    <option value="1">Certificare</option>
+                                    <option value="2">Re-Certificare</option>
+                                    
+                                 </select>
+								 
+								
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="nume_curs" id="nume_curs" class="form-control input-sm" placeholder="Nume Curs" maxlength="120" required>
+                            </div>
+							
+							<div class="form-group">
+                                <input type="text" name="nume_provider" id="nume_provider" class="form-control input-sm" placeholder="Nume Provider" maxlength="40" required>
+                            </div>
+							
+                            <div class="form-group">
+                                
+								
+								<select required="required" class="form-control input-sm" placeholder="Moneda"  >
+								    <option hidden >Moneda</option>
+                                    <option value="0">EUR</option>
+                                    <option value="1">USD</option>
+                                    <option value="2">RON</option>
+                                    
+                                 </select>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+								
+                                    <div class="form-group">
+                                        <input type="number" name="cost_curs" id="cost_curs" class="form-control input-sm"   min="0" maxlength="8"  step="0.01"  placeholder='Cost Curs' required>
+                                    </div>
+                                </div>
+								
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        
+									<select id="an" name="an" class="form-control input-sm">
+									    <option hidden >An</option>
+									<script>
+                                         var myDate = new Date();
+                                         var year = myDate.getFullYear();
+                                          for(var i = 2015; i <=2099; i++){
+	                                       document.write('<option value="'+i+'">'+i+'</option>');
+                                          }
+                                    </script>
+										
+									</select>
+										
+										
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="zile_curs" id="zile_curs" class="form-control input-sm" placeholder="Zile Curs" maxlength="2" min="0" required>
+                            </div>
+                            
+                            <div class="form-group">
+							
+                                
+								<select required="required" class="form-control input-sm" placeholder="Perioada Curs" >
+								    <option hidden >Perioada Curs</option>
+                                    <option value="0">Q1</option>
+                                    <option value="1">Q2</option>
+                                    <option value="2">Q3</option>
+                                    
+                                 </select>
+                            </div>
+
+                            <div class="form-group">
+							
+                                
+								<select required="required" class="form-control input-sm" placeholder="Tip Curs" >
+								    <option hidden >Tip Curs</option>
+                                    <option value="0">Cerut de Proiect</option>
+                                    <option value="1">Dezvoltare Personala</option>
+                                    
+                                    
+                                 </select>
+								
+                            </div>
+
+                            
+                                <div class="form-group">
+                                  
+								   <select required="required" class="form-control input-sm" placeholder="Desfasurare Curs" >
+								    <option hidden >Desfasurare Curs</option>
+                                    <option value="0">In afara orelor de program</option>
+                                    <option value="1">In timpul programului</option>
+                                    
+                                    
+                                 </select>
+                                   
+                                </div>
+								
+								
+								<div class="form-group">
+                                  
+								   <select required="required" class="form-control input-sm" placeholder="Suporta IBM/Clientul pontajul pe proiect?" >
+								    <option hidden >Suporta IBM/Clientul pontajul pe proiect?</option>
+                                    <option value="0">Da</option>
+                                    <option value="1">Nu</option>
+                                    
+                                    
+                                 </select>
+                                   
+                                </div>
+								
+                                
+                                 <div class="form-group">
+                                    <input type="email" name="email_ibm" id="email_ibm" class="form-control input-sm" placeholder="Email IBM" >
+                                 </div>
+                                
+                            </div>
+
+                            <input type="submit" value="Submit" class="btn btn-info btn-block">
+							
+                        </form>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+       
+    </div>
+    
+</div>
+
+
+
+
+
+
+</body>
+</html>
