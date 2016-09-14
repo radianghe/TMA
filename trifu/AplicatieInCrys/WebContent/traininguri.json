@@ -1,0 +1,15 @@
+[{
+    "idCurs": 1,
+    "numeCurs": "Curs 1",
+    "numeProvider": "InCrys",
+    "durata": 30,
+    "perioada": "Q3",
+    "tip": "Cerut de proiect"
+}, {
+    "idCurs": 2,
+    "numeCurs": "Curs 2",
+    "numeProvider": "InCrys",
+    "durata": 30,
+    "perioada": "Q4",
+    "tip": "Personal"
+}]

@@ -1,0 +1,93 @@
+<html ng-app="myApp">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/AplicatieInCrys/Styles.css">
+    <link rel="stylesheet" type="text/css" href="/AplicatieInCrys/bootstrap.css">
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js">
+    </script>
+    <script type="text/javascript">
+        myApp = angular.module('myApp', []);
+        myApp.controller('myController', function($scope, $http) {
+            $http.get('traininguri.json').success(function(response) {
+                $scope.myData = response;
+            });
+        });
+    </script>
+</head>
+
+<body ng-controller="myController">
+
+    <div class="menu-wrap">
+        <nav class="menu">
+            <ul class="clearfix">
+                <li><a href="/AplicatieInCrys/userNormal.html">Home</a></li>
+                <li><a href="/AplicatieInCrys/Traininguri.html">Traininguri</a></li>
+                <li class=><a href="/AplicatieInCrys/Cerere.html">Cerere Noua</a></li>
+                <li class=><a href="/AplicatieInCrys/ContulMeu.html">Contul Meu</a></li>
+
+                <li>
+                    <a href="#">Rapoarte <span class="arrow">&#9660;</span></a>
+
+                    <ul class="sub-menu">
+                        <li><a href="#">Raport Training per User</a></li>
+                        <li><a href="#">Raport Training pe Luna</a></li>
+                        <li><a href="#">Raport Training pe Status</a></li>
+                        <li><a href="#">Raport Training pe Tip Training</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Ajutor</a></li>
+            </ul>
+        </nav>
+    </div>
+
+
+
+Search : <input type="text" value="" ng-model="search" />
+    <div id="Tabel">
+
+        <table border=1 align="center" class="table table-striped table-hover" style="margin-top: 5%">
+            <thead id="head1" bgcolor="white">
+                <tr class="bg-primary" style="background-color: #333">
+
+                   <th style="text-align:center">Id Curs</th>
+                    <th style="text-align:center">Nume Curs</th>
+                    <th style="text-align:center">Nume Provider</th>
+                    <th style="text-align:center">Durata</th>
+                    <th style="text-align:center">Perioada</th>
+                    <th style="text-align:center">Tip</th>
+                </tr>
+                <tr ng-repeat="data in myData | filter: search">
+
+                    <td style="text-align:center">{{data.idCurs}}</td>
+                    <td style="text-align:center">{{data.numeCurs}}</td>
+                    <td style="text-align:center">{{data.numeProvider}}</td>
+                    <td style="text-align:center">{{data.durata}}</td>
+                    <td style="text-align:center">{{data.perioada}}</td>
+                    <td style="text-align:center">{{data.tip}}</td>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+<!--    <div id="TD">
+
+        <a href="Traininguri.html">
+            <button type="button" class="btn btn-primary btn-lg ">Traininguri Disponibile</button>
+        </a>
+        </br>
+
+    </div>
+-->
+
+
+    <div id="PTN">
+    <a href="/AplicatieInCrys/TrainingNou.html">
+        <button type="button" class="btn btn-primary btn-lg">Propune Training Nou</button>
+</a>
+
+    </div>
+
+</body>
+
+</html>

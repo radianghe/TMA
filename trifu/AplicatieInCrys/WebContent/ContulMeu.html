@@ -1,0 +1,69 @@
+
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/AplicatieInCrys/Styles.css">
+<link rel="stylesheet" type="text/css" href="/AplicatieInCrys/bootstrap.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+
+<div class="menu-wrap">
+    <nav class="menu">
+        <ul class="clearfix">
+            <li><a href="/AplicatieInCrys/userNormal.html">Home</a></li>
+            <li><a href="/AplicatieInCrys/Traininguri.html">Traininguri</a></li>
+              <li class=><a href="/AplicatieInCrys/Cerere.html">Cerere Noua</a></li>
+			  <li class=><a href="/AplicatieInCrys/ContulMeu.html">Contul Meu</a></li>
+			  
+            <li>
+                <a href="#">Rapoarte <span class="arrow">&#9660;</span></a>
+
+                <ul class="sub-menu">
+                    <li><a href="#">Raport Training per User</a></li>
+                    <li><a href="#">Raport Training pe Luna</a></li>
+                    <li><a href="#">Raport Training pe Status</a></li>
+                    <li><a href="#">Raport Training pe Tip Training</a></li>
+                </ul>
+            </li>
+            <li><a href="/AplicatieInCrys/Ajutor.html">Ajutor</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="contact">
+<form action="Controller">
+  <h1>Nume:    <input type="hidden" name="numeCont"><br></h1>
+  <h1>Prenume: <input type="hidden" name="prenumeCont"><br></h1>
+  <h1>Mail:    <input type="hidden" name="mailCont"><br></h1>
+  <h1>Id Manager: <input type="hidden" name="managerCont"><br></h1>
+</div>
+
+<?php
+    //open connection to mysql db
+    $connection = mysqli_connect("localhost","Alex","root","useriincrys") or die("Error " . mysqli_error($connection));
+
+    //fetch table rows from mysql db
+    $sql = "select * from training";
+    $result = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
+
+    //create an array
+    $emparray = array();
+    while($row =mysqli_fetch_assoc($result))
+    {
+        $emparray[] = $row;
+    }
+    echo json_encode($emparray);
+
+    //close the db connection
+    mysqli_close($connection);
+?>
+
+
+
+
+
+</body>
+</html>

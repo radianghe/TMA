@@ -1,0 +1,224 @@
+
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/AplicatieInCrys/Styles.css">
+<link rel="stylesheet" type="text/css" href="/AplicatieInCrys/bootstrap.css">
+
+
+
+</head>
+
+<body>
+
+<div class="menu-wrap">
+    <nav class="menu">
+        <ul class="clearfix">
+            <li><a href="/AplicatieInCrys/userNormal.html">Home</a></li>
+            <li><a href="/AplicatieInCrys/Traininguri.html">Traininguri</a></li>
+              <li class=><a href="/AplicatieInCrys/Cerere.html">Cerere Noua</a></li>
+			  <li class=><a href="/AplicatieInCrys/ContulMeu.html">Contul Meu</a></li>
+			  
+            <li>
+                <a href="#">Rapoarte <span class="arrow">&#9660;</span></a>
+
+                <ul class="sub-menu">
+                    <li><a href="#">Raport Training per User</a></li>
+                    <li><a href="#">Raport Training pe Luna</a></li>
+                    <li><a href="#">Raport Training pe Status</a></li>
+                    <li><a href="#">Raport Training pe Tip Training</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Ajutor</a></li>
+        </ul>
+    </nav>
+</div>
+
+
+
+
+<div class="container">
+
+ <div class="container" id="container1">
+ 
+        <div class="row centered-form">
+            <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">CERERE NOUA TRAINING </h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" method="post" action="CerereNouaController">
+                            <div class="form-group">
+							
+                                
+								<select id="cerereNouaNumeTl" name="cerereNouaNumeTl" required="required" class="form-control input-sm"  class="form-control placeholder" maxlength="40">
+                                    <option hidden >Team Leader</option>
+                                    <option value="Ovidiu Eduard Petre">Ovidiu Eduard Petre</option>
+                                    <option value="Calin Vasile Bocsitan">Calin Vasile Bocsitan</option>
+                                    <option value="Irina Ranca">Irina Ranca</option>
+                                    <option value="Horatiu-Aurelian Marcus">Horatiu-Aurelian Marcus</option>
+                                    <option value="Carmen Doia">Carmen Doia</option>
+                                    <option value="Robert-Cristian Seniuc">Robert-Cristian Seniuc</option>                
+                                    <option value="Cristian Petrut Petrache">Cristian Petrut Petrache</option>
+                                    <option value="Adina Mihaela Dorcu">Adina Mihaela Dorcu</option>
+                                    <option value="Mihai Mlesnita">Mihai Mlesnita</option>
+                                    <option value="Dumitru Catalin Marica">Dumitru Catalin Marica</option>
+                                    <option value="Nicoleta Alina Maciuca">Nicoleta Alina Maciuca</option>
+                                    <option value="Victor Adrian Doandesi">Victor Adrian Doandesi</option>
+                                    <option value="Eduard Alexandru Tudoras">Eduard Alexandru Tudoras</option>
+                                 </select>
+									
+								
+								
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" name="cerereNouaNumeUser" id="cerereNouaNumeUser" class="form-control input-sm" placeholder="Nume" maxlength="40" required>
+                            </div>
+							 <div class="form-group">
+                                <input type="text" name="cerereNouaPrenumeUser" id="cerereNouaPrenumeUser" class="form-control input-sm" placeholder="Prenume" maxlength="40" required>
+                            </div>
+							
+                            <div class="form-group">
+                                
+								<select  name="cerereNouaTipTraining" required="required" class="form-control input-sm" placeholder="Tip Training">
+								    <option hidden >Tip Training</option>
+                                    <option value="Curs">Curs</option>
+                                    <option value="Certificare">Certificare</option>
+                                    <option value="Re-Certificare">Re-Certificare</option>
+                                    
+                                 </select>
+								 
+								
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="cerereNouaNumeCurs" id="cerereNouaNumeCurs" class="form-control input-sm" placeholder="Nume Curs" maxlength="120" required>
+                            </div>
+							
+							<div class="form-group">
+                                <input type="text" name="cerereNouaNumeProvider" id="cerereNouaNumeProvider" class="form-control input-sm" placeholder="Nume Provider" maxlength="40" required>
+                            </div>
+							
+                            <div class="form-group">
+                                
+								
+								<select name="cerereNouaNMoneda" required="required" class="form-control input-sm" placeholder="Moneda"  >
+								    <option hidden >Moneda</option>
+                                    <option value="EUR">EUR</option>
+                                    <option value="USD">USD</option>
+                                    <option value="RON">RON</option>
+                                    
+                                 </select>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+								
+                                    <div class="form-group">
+                                        <input type="number" name="cerereNouaCostCurs" id="cerereNouaCostCurs" class="form-control input-sm" min="0" maxlength="8"  step="0.01"  placeholder='Cost Curs' required>
+                                    </div>
+                                </div>
+								
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        
+									<select id="cerereNouaAnCurs" name="cerereNouaAnCurs" class="form-control input-sm">
+									    <option hidden >An</option>
+									<script>
+                                         var myDate = new Date();
+                                         var year = myDate.getFullYear();
+                                          for(var i = 2015; i <=2099; i++){
+	                                       document.write('<option value="'+i+'">'+i+'</option>');
+                                          }
+                                    </script>
+										
+									</select>
+										
+										
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="cerereNouaZileCurs" id="cerereNouaZileCurs" class="form-control input-sm" placeholder="Zile Curs" maxlength="2" min="0" required>
+                            </div>
+                            
+                            <div class="form-group">
+							
+                                
+								<select  name ="cerereNouaPerioadaCurs" id="cerereNouaPerioadaCurs" required="required" class="form-control input-sm" placeholder="Perioada Curs" >
+								    <option hidden >Perioada Curs</option>
+                                    <option value="Q1">Q1</option>
+                                    <option value="Q2">Q2</option>
+                                    <option value="Q3">Q3</option>
+                                    <option value="Q4">Q4</option>
+                                    
+                                 </select>
+                            </div>
+
+                            <div class="form-group">
+							
+                                
+								<select name="cererNouaTipCurs" id="cerereNouaTipCurs" required="required" class="form-control input-sm" placeholder="Tip Curs" >
+								    <option hidden >Tip Curs</option>
+                                    <option value="Cerut de Proiect">Cerut de Proiect</option>
+                                    <option value="Dezvoltare Personala">Dezvoltare Personala</option>
+                                    
+                                    
+                                 </select>
+								
+                            </div>
+
+                            
+                                <div class="form-group">
+                                  
+								   <select name="cerereNouaDesfasurareCurs" id="cerereNouaDesfasurareCurs"required="required" class="form-control input-sm" placeholder="Desfasurare Curs" >
+								    <option hidden >Desfasurare Curs</option>
+                                    <option value="In afara orelor de program">In afara orelor de program</option>
+                                    <option value="In timpul programului">In timpul programului</option>
+                                    
+                                    
+                                 </select>
+                                   
+                                </div>
+								
+								
+								<div class="form-group">
+                                  
+								   <select id="cerereNouaSuport" name="cerereNouaSuport" required="required" class="form-control input-sm" placeholder="Suporta IBM/Clientul pontajul pe proiect?" >
+								    <option hidden >Suporta IBM/Clientul pontajul pe proiect?</option>
+                                    <option value="Da">Da</option>
+                                    <option value="Nu">Nu</option>
+                                    
+                                    
+                                 </select>
+                                   
+                                </div>
+								
+                                
+                                 <div class="form-group">
+                                    <input  type="email" name="cerereNouaEmailIbm" id="cerereNouaEmailIbm" class="form-control input-sm" placeholder="Email IBM" >
+                                 </div>
+                                
+                            </div>
+
+                            <input type="submit" value="Submit" class="btn btn-info btn-block" ">
+							
+                        </form>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+       
+    </div>
+    
+</div>
+
+
+
+
+
+
+</body>
+</html>

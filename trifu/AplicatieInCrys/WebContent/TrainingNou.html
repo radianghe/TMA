@@ -1,0 +1,172 @@
+
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/AplicatieInCrys/Styles.css">
+<link rel="stylesheet" type="text/css" href="/AplicatieInCrys/bootstrap.css">
+
+
+
+</head>
+
+<body>
+
+<div class="menu-wrap">
+    <nav class="menu">
+        <ul class="clearfix">
+            <li><a href="/AplicatieInCrys/userNormal.html">Home</a></li>
+            <li><a href="/AplicatieInCrys/Traininguri.html">Traininguri</a></li>
+              <li class=><a href="/AplicatieInCrys/Cerere.html">Cerere Noua</a></li>
+			  <li class=><a href="/AplicatieInCrys/ContulMeu.html">Contul Meu</a></li>
+			  
+            <li>
+                <a href="#">Rapoarte <span class="arrow">&#9660;</span></a>
+
+                <ul class="sub-menu">
+                    <li><a href="#">Raport Training per User</a></li>
+                    <li><a href="#">Raport Training pe Luna</a></li>
+                    <li><a href="#">Raport Training pe Status</a></li>
+                    <li><a href="#">Raport Training pe Tip Training</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Ajutor</a></li>
+        </ul>
+    </nav>
+</div>
+
+
+<div id="TD-TN">
+
+<a href="/AplicatieInCrys/Traininguri.html">
+<button type="button" class="btn btn-primary btn-lg">Traininguri Disponibile</button>
+</a>
+</br>
+</br>
+</div>
+
+<div id="PTN-TN">
+<a href="/AplicatieInCrys/TrainingNou.html">
+<button type="button" class="btn btn-primary btn-lg">Propune Training Nou</button>
+</a>
+
+</div>
+
+
+<div class="container">
+
+ <div class="container" id="container2">
+ 
+        <div class="row centered-form">
+            <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">PROPUNE TRAINING</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" method="post">
+                            <div class="form-group">			
+                                									
+															
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" name="nume" id="nume" class="form-control input-sm" placeholder="Nume" maxlength="40" required>
+                            </div>
+							 <div class="form-group">
+                                <input type="text" name="prenume" id="prenume" class="form-control input-sm" placeholder="Prenume" maxlength="40" required>
+                            </div>
+							
+                            
+                            <div class="form-group">
+                                <input type="text" name="nume_training" id="nume_training" class="form-control input-sm" placeholder="Nume Training" maxlength="120" required>
+                            </div>
+							
+							<div class="form-group">
+                                <input type="text" name="nume_provider" id="nume_provider" class="form-control input-sm" placeholder="Nume Provider" maxlength="40" required>
+                            </div>
+							
+                            <div class="form-group">
+                                
+								
+								<select required="required" class="form-control input-sm" placeholder="Moneda"  >
+								    <option hidden >Moneda</option>
+                                    <option value="0">EUR</option>
+                                    <option value="1">USD</option>
+                                    <option value="2">RON</option>
+                                    
+                                 </select>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+								
+                                    <div class="form-group">
+                                        <input type="number" name="cost_curs" id="cost_curs" class="form-control input-sm" min="0" maxlength="8"  step="0.01"  placeholder='Cost Curs' required>
+                                    </div>
+                                </div>
+								
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        
+									<select id="an" name="an" class="form-control input-sm">
+									    <option hidden >An</option>
+									<script>
+                                         var myDate = new Date();
+                                         var year = myDate.getFullYear();
+                                          for(var i = 2015; i <=2099; i++){
+	                                       document.write('<option value="'+i+'">'+i+'</option>');
+                                          }
+                                    </script>
+										
+									</select>
+										
+										
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="durata" id="durata" class="form-control input-sm" placeholder="Durata" maxlength="3" min="0" required>
+                            </div>
+                            
+                            <div class="form-group">
+							
+                                
+								<select required="required" class="form-control input-sm" placeholder="Perioada Curs" >
+								    <option hidden >Perioada Curs</option>
+                                    <option value="0">Q1</option>
+                                    <option value="1">Q2</option>
+                                    <option value="2">Q3</option>
+									<option value="3">Q4</option>
+                                    
+                                 </select>
+                            </div>
+
+                                                        
+                                <div class="form-group">
+                                  
+								   <input type="text" name="descriere" id="descriere" class="form-control input-sm" placeholder="Descriere (max.250)" maxlength="250" min="0" required>
+                                   
+                                </div>
+						
+                            
+
+                            <input type="submit" value="Submit" class="btn btn-info btn-block">
+							
+                        </form>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+       
+    </div>
+    
+</div>
+
+
+
+
+
+
+</body>
+</html>
