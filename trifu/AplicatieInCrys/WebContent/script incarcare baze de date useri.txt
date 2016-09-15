@@ -1,0 +1,57 @@
+
+			String csvFile = "D:/intership java/AplicatieInCrys/WebContent/users.csv";
+			BufferedReader br = null;
+			String line = "";
+			String cvsSplitBy = "";
+
+			try {
+
+				br = new BufferedReader(new FileReader(csvFile));
+				while ((line = br.readLine()) != null) {
+
+					String[] tok = line.split(",\"\"");
+					String [] tok3=tok[1].split("\"");//prenume
+					String [] tok4=tok[2].split("\"");//nume
+					String [] tok5=tok[3].split("\"");//username
+					String [] tok6=tok[4].split("\"");//id angajat
+					String [] tok7=tok[5].split("\"");//id manager
+					String [] tok8=tok[6].split("\"");//functie
+					String[] tok2=tok[0].split("\"");
+
+
+					PreparedStatement insertPlane = null;
+					String sql = "insert into useri values (?,?,?,?,?,?,?,?)";
+					insertPlane = database.connection.prepareStatement(sql);
+					insertPlane.setString(1, tok5[0]);
+					insertPlane.setString(2, "12345678");
+					insertPlane.setString(3, tok8[0]);
+					insertPlane.setInt(4, Integer.parseInt(tok2[1]));
+					insertPlane.setString(5, tok4[0]);
+					insertPlane.setString(6, tok3[0]);
+					insertPlane.setString(7, tok7[0]);
+					insertPlane.setString(8, tok6[0]);
+					insertPlane.executeUpdate();
+
+				}
+
+
+//script incarcare team leader
+
+			try {
+				database.statement = database.connection.createStatement();
+				String sql1 = "SELECT nume,prenume,id_angajat,id_manager FROM useri where id_manager='F73CA85C-76A4-422D-80B4-EC478820BC4B'";
+				ResultSet rs1 = database.statement.executeQuery(sql1);
+				while(rs1.next())
+				{
+					PreparedStatement prep=database.connection.prepareStatement("insert into teamleaders values(?,?,?,?)");
+					prep.setString(1, rs1.getString("id_angajat"));
+					prep.setString(2, rs1.getString("nume"));
+					prep.setString(3, rs1.getString("prenume"));
+					prep.setString(4, rs1.getString("id_manager"));
+					prep.executeUpdate();
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
