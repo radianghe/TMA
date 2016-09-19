@@ -80,7 +80,20 @@ public class GenerareRapoarteController extends HttpServlet {
 				stmt.setString(5, tip);
 				
 				ResultSet rs=stmt.executeQuery();
-				
+				 PDDocument doc = null;
+			        PDPage page = null;
+
+			       try{
+			           doc = new PDDocument();
+			           page = new PDPage();
+
+			           doc.addPage(page);
+			           PDFont font = PDType1Font.HELVETICA_BOLD;
+
+			           PDPageContentStream content = new PDPageContentStream(doc, page);
+			           content.beginText();
+			           content.setFont( font, 12 );
+			           content.moveTextPositionByAmount( 100, 700 );
 				while(rs.next()){
 					
 					
@@ -89,29 +102,14 @@ public class GenerareRapoarteController extends HttpServlet {
 					
 					
 					
-					  PDDocument doc = null;
-				        PDPage page = null;
-
-				       try{
-				           doc = new PDDocument();
-				           page = new PDPage();
-
-				           doc.addPage(page);
-				           PDFont font = PDType1Font.HELVETICA_BOLD;
-
-				           PDPageContentStream content = new PDPageContentStream(doc, page);
-				           content.beginText();
-				           content.setFont( font, 12 );
-				           content.moveTextPositionByAmount( 100, 700 );
-				           content.drawString("Hello from www.printmyfolders.com");
+				}
 
 				           content.endText();
 				           content.close();
 				          doc.save("PDFWithText.pdf");
 				          doc.close();
-				    } catch (Exception e){
-				        System.out.println(e);
-				    }	
+				   
+				  
 					
 				}
 		
