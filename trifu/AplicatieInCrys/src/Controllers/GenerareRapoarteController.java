@@ -28,19 +28,21 @@ import Database.Db;
 @WebServlet("/GenerareRapoarteController")
 public class GenerareRapoarteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GenerareRapoarteController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public GenerareRapoarteController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -48,6 +50,7 @@ public class GenerareRapoarteController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Db databd=new Db();
 		File f=new File("Raport.txt");
@@ -81,7 +84,7 @@ public class GenerareRapoarteController extends HttpServlet {
 				
 				ResultSet rs=stmt.executeQuery();
 				 PDDocument doc = null;
-			        PDPage page = null;
+			      PDPage page = null;
 
 			       try{
 			           doc = new PDDocument();
@@ -93,14 +96,12 @@ public class GenerareRapoarteController extends HttpServlet {
 			           PDPageContentStream content = new PDPageContentStream(doc, page);
 			           content.beginText();
 			           content.setFont( font, 12 );
-			           content.moveTextPositionByAmount( 100, 700 );
 				while(rs.next()){
-					
-					
-					
-					
-					
-					
+					//#cleancode
+					  String line=new String(rs.getString("id") + ' ' + rs.getString("numeTl") + ' ' + rs.getString("numeUser") + ' ' + rs.getString("prenumeUser") + ' ' +
+							  rs.getString("tipTraining") + ' ' + rs.getString("numeCurs") + ' ' + rs.getString("numeProvider") + ' ' + rs.getString("moneda") + ' ' + rs.getFloat("cost") + ' ' + rs.getInt("an") + ' ' + 
+							  rs.getInt("zile") + ' ' + rs.getString("perioada") + ' ' + rs.getString("tipcurs") + ' ' + rs.getString("desfasurare") + ' ' + rs.getString("suport") + ' ' + rs.getString("mail") + ' ' + rs.getString("status"));
+					  content.drawString(line + System.lineSeparator());
 					
 				}
 
@@ -109,18 +110,20 @@ public class GenerareRapoarteController extends HttpServlet {
 				          doc.save("PDFWithText.pdf");
 				          doc.close();
 				   
-				  
-					
-				}
-		
+
 				
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				
 				e.printStackTrace();
-			}
-		}
 			
 		}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}finally{
+			System.out.println("Operation done.");
+		}
 	}
-
+}
+}
 }
