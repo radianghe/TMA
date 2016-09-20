@@ -48,82 +48,323 @@ public class GenerareRapoarteController extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 	@SuppressWarnings("deprecation")
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Db databd=new Db();
-		File f=new File("Raport.txt");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Db databd = new Db();
+		File f = new File("Raport.txt");
 		try {
 			databd.getConnected();
 		} catch (ClassNotFoundException | SQLException e1) {
-		
+
 			e1.printStackTrace();
 		}
-		String option=request.getParameter("raport");
-		
-		switch(option){
-			
-		case "Utilizator":
-		{
-			String numeUser=request.getParameter("numeu");
-			String prenumeUser=request.getParameter("prenumeu");
-			String trimestru=request.getParameter("trimestru");
-			int an=Integer.parseInt(request.getParameter("an"));
-			String status=request.getParameter("status");
-			String tip=request.getParameter("tip");
-			
+		String option = request.getParameter("raport");
+
+		switch (option) {
+
+		case "User": {
+			String numeUser = request.getParameter("numeu");
+			String prenumeUser = request.getParameter("prenumeu");
+			String trimestru = request.getParameter("trimestru");
+			int an = Integer.parseInt(request.getParameter("an"));
+			String status = request.getParameter("status");
+			String tip = request.getParameter("tip");
+
 			try {
-				java.sql.PreparedStatement stmt=databd.connection.prepareStatement("select * from traininguri where numeUser='?' and prenumeUser='?' and perioada='?' and tipcurs='?'");
+				java.sql.PreparedStatement stmt = databd.connection.prepareStatement(
+						"select * from traininguri where numeUser='?' and prenumeUser='?' and perioada='?' and and an='?' and status='?' and tipcurs='?'");
 				stmt.setString(0, numeUser);
 				stmt.setString(1, prenumeUser);
 				stmt.setString(2, trimestru);
 				stmt.setInt(3, an);
 				stmt.setString(4, status);
 				stmt.setString(5, tip);
-				
-				ResultSet rs=stmt.executeQuery();
-				 PDDocument doc = null;
-			      PDPage page = null;
 
-			       try{
-			           doc = new PDDocument();
-			           page = new PDPage();
+				ResultSet rs = stmt.executeQuery();
+				PDDocument doc = null;
+				PDPage page = null;
 
-			           doc.addPage(page);
-			           PDFont font = PDType1Font.HELVETICA_BOLD;
+				try {
+					doc = new PDDocument();
+					page = new PDPage();
 
-			           PDPageContentStream content = new PDPageContentStream(doc, page);
-			           content.beginText();
-			           content.setFont( font, 12 );
-				while(rs.next()){
-					//#cleancode
-					  String line=new String(rs.getString("id") + ' ' + rs.getString("numeTl") + ' ' + rs.getString("numeUser") + ' ' + rs.getString("prenumeUser") + ' ' +
-							  rs.getString("tipTraining") + ' ' + rs.getString("numeCurs") + ' ' + rs.getString("numeProvider") + ' ' + rs.getString("moneda") + ' ' + rs.getFloat("cost") + ' ' + rs.getInt("an") + ' ' + 
-							  rs.getInt("zile") + ' ' + rs.getString("perioada") + ' ' + rs.getString("tipcurs") + ' ' + rs.getString("desfasurare") + ' ' + rs.getString("suport") + ' ' + rs.getString("mail") + ' ' + rs.getString("status"));
-					  content.drawString(line + System.lineSeparator());
-					
+					doc.addPage(page);
+					PDFont font = PDType1Font.HELVETICA_BOLD;
+
+					PDPageContentStream content = new PDPageContentStream(doc, page);
+					content.beginText();
+					content.setFont(font, 12);
+					while (rs.next()) {
+						// #cleancode
+						String line = new String(rs.getString("id") + ' ' + rs.getString("numeTl") + ' '
+								+ rs.getString("numeUser") + ' ' + rs.getString("prenumeUser") + ' '
+								+ rs.getString("tipTraining") + ' ' + rs.getString("numeCurs") + ' '
+								+ rs.getString("numeProvider") + ' ' + rs.getString("moneda") + ' '
+								+ rs.getFloat("cost") + ' ' + rs.getInt("an") + ' ' + rs.getInt("zile") + ' '
+								+ rs.getString("perioada") + ' ' + rs.getString("tipcurs") + ' '
+								+ rs.getString("desfasurare") + ' ' + rs.getString("suport") + ' '
+								+ rs.getString("mail") + ' ' + rs.getString("status"));
+						content.drawString(line + System.lineSeparator());
+
+					}
+
+					content.endText();
+					content.close();
+					doc.save("PDFWithText.pdf");
+					doc.close();
+
+				} catch (Exception e) {
+
+					e.printStackTrace();
+
 				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} finally {
+				System.out.println("Operation done.");
+			}
 
-				           content.endText();
-				           content.close();
-				          doc.save("PDFWithText.pdf");
-				          doc.close();
-				   
-
-				
-			} catch (Exception e) {
-				
-				e.printStackTrace();
-			
 		}
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}finally{
-			System.out.println("Operation done.");
+		case "TL": {
+			String numeUser = request.getParameter("numetl");
+			String prenumeUser = request.getParameter("prenumetl");
+			String trimestru = request.getParameter("trimestru");
+			int an = Integer.parseInt(request.getParameter("an"));
+			String status = request.getParameter("status");
+			String tip = request.getParameter("tip");
+
+			try {
+				java.sql.PreparedStatement stmt = databd.connection.prepareStatement(
+						"select * from traininguri where numeTL='? ?' and perioada='?' and and an='?' and status='?' and tipcurs='?'");
+
+				stmt.setString(0, prenumeUser);
+				stmt.setString(1, numeUser);
+				stmt.setString(2, trimestru);
+				stmt.setInt(3, an);
+				stmt.setString(4, status);
+				stmt.setString(5, tip);
+
+				ResultSet rs = stmt.executeQuery();
+				PDDocument doc = null;
+				PDPage page = null;
+
+				try {
+					doc = new PDDocument();
+					page = new PDPage();
+
+					doc.addPage(page);
+					PDFont font = PDType1Font.HELVETICA_BOLD;
+
+					PDPageContentStream content = new PDPageContentStream(doc, page);
+					content.beginText();
+					content.setFont(font, 12);
+					while (rs.next()) {
+						// #cleancode
+						String line = new String(rs.getString("id") + ' ' + rs.getString("numeTl") + ' '
+								+ rs.getString("numeUser") + ' ' + rs.getString("prenumeUser") + ' '
+								+ rs.getString("tipTraining") + ' ' + rs.getString("numeCurs") + ' '
+								+ rs.getString("numeProvider") + ' ' + rs.getString("moneda") + ' '
+								+ rs.getFloat("cost") + ' ' + rs.getInt("an") + ' ' + rs.getInt("zile") + ' '
+								+ rs.getString("perioada") + ' ' + rs.getString("tipcurs") + ' '
+								+ rs.getString("desfasurare") + ' ' + rs.getString("suport") + ' '
+								+ rs.getString("mail") + ' ' + rs.getString("status"));
+						content.drawString(line + System.lineSeparator());
+
+					}
+
+					content.endText();
+					content.close();
+					doc.save("PDFWithText.pdf");
+					doc.close();
+
+				} catch (Exception e) {
+
+					e.printStackTrace();
+
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} finally {
+				System.out.println("Operation done.");
+			}
+
+		}
+
+		case "Trimestru": {
+			String trimestru = request.getParameter("trimestru");
+			int an = Integer.parseInt(request.getParameter("an"));
+
+			try {
+				java.sql.PreparedStatement stmt = databd.connection
+						.prepareStatement("select * from traininguri where perioada='?' and an='?'");
+
+				stmt.setString(0, trimestru);
+				stmt.setInt(1, an);
+
+				ResultSet rs = stmt.executeQuery();
+				PDDocument doc = null;
+				PDPage page = null;
+
+				try {
+					doc = new PDDocument();
+					page = new PDPage();
+
+					doc.addPage(page);
+					PDFont font = PDType1Font.HELVETICA_BOLD;
+
+					PDPageContentStream content = new PDPageContentStream(doc, page);
+					content.beginText();
+					content.setFont(font, 12);
+					while (rs.next()) {
+						// #cleancode
+						String line = new String(rs.getString("id") + ' ' + rs.getString("numeTl") + ' '
+								+ rs.getString("numeUser") + ' ' + rs.getString("prenumeUser") + ' '
+								+ rs.getString("tipTraining") + ' ' + rs.getString("numeCurs") + ' '
+								+ rs.getString("numeProvider") + ' ' + rs.getString("moneda") + ' '
+								+ rs.getFloat("cost") + ' ' + rs.getInt("an") + ' ' + rs.getInt("zile") + ' '
+								+ rs.getString("perioada") + ' ' + rs.getString("tipcurs") + ' '
+								+ rs.getString("desfasurare") + ' ' + rs.getString("suport") + ' '
+								+ rs.getString("mail") + ' ' + rs.getString("status"));
+						content.drawString(line + System.lineSeparator());
+
+					}
+
+					content.endText();
+					content.close();
+					doc.save("PDFWithText.pdf");
+					doc.close();
+
+				} catch (Exception e) {
+
+					e.printStackTrace();
+
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} finally {
+				System.out.println("Operation done.");
+			}
+
+		}
+
+		case "Status": {
+			String status = request.getParameter("status");
+
+			try {
+				java.sql.PreparedStatement stmt = databd.connection.prepareStatement(
+						"select * from traininguri where status='?'");
+
+				stmt.setString(0, status);
+
+				ResultSet rs = stmt.executeQuery();
+				PDDocument doc = null;
+				PDPage page = null;
+
+				try {
+					doc = new PDDocument();
+					page = new PDPage();
+
+					doc.addPage(page);
+					PDFont font = PDType1Font.HELVETICA_BOLD;
+
+					PDPageContentStream content = new PDPageContentStream(doc, page);
+					content.beginText();
+					content.setFont(font, 12);
+					while (rs.next()) {
+						// #cleancode
+						String line = new String(rs.getString("id") + ' ' + rs.getString("numeTl") + ' '
+								+ rs.getString("numeUser") + ' ' + rs.getString("prenumeUser") + ' '
+								+ rs.getString("tipTraining") + ' ' + rs.getString("numeCurs") + ' '
+								+ rs.getString("numeProvider") + ' ' + rs.getString("moneda") + ' '
+								+ rs.getFloat("cost") + ' ' + rs.getInt("an") + ' ' + rs.getInt("zile") + ' '
+								+ rs.getString("perioada") + ' ' + rs.getString("tipcurs") + ' '
+								+ rs.getString("desfasurare") + ' ' + rs.getString("suport") + ' '
+								+ rs.getString("mail") + ' ' + rs.getString("status"));
+						content.drawString(line + System.lineSeparator());
+
+					}
+
+					content.endText();
+					content.close();
+					doc.save("PDFWithText.pdf");
+					doc.close();
+
+				} catch (Exception e) {
+
+					e.printStackTrace();
+
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} finally {
+				System.out.println("Operation done.");
+			}
+
+		}
+		
+		case "Tip": {
+			String tip = request.getParameter("tip");
+
+			try {
+				java.sql.PreparedStatement stmt = databd.connection.prepareStatement(
+						"select * from traininguri where tipcurs='?'");
+				stmt.setString(0, tip);
+
+				ResultSet rs = stmt.executeQuery();
+				PDDocument doc = null;
+				PDPage page = null;
+
+				try {
+					doc = new PDDocument();
+					page = new PDPage();
+
+					doc.addPage(page);
+					PDFont font = PDType1Font.HELVETICA_BOLD;
+
+					PDPageContentStream content = new PDPageContentStream(doc, page);
+					content.beginText();
+					content.setFont(font, 12);
+					while (rs.next()) {
+						// #cleancode
+						String line = new String(rs.getString("id") + ' ' + rs.getString("numeTl") + ' '
+								+ rs.getString("numeUser") + ' ' + rs.getString("prenumeUser") + ' '
+								+ rs.getString("tipTraining") + ' ' + rs.getString("numeCurs") + ' '
+								+ rs.getString("numeProvider") + ' ' + rs.getString("moneda") + ' '
+								+ rs.getFloat("cost") + ' ' + rs.getInt("an") + ' ' + rs.getInt("zile") + ' '
+								+ rs.getString("perioada") + ' ' + rs.getString("tipcurs") + ' '
+								+ rs.getString("desfasurare") + ' ' + rs.getString("suport") + ' '
+								+ rs.getString("mail") + ' ' + rs.getString("status"));
+						content.drawString(line + System.lineSeparator());
+
+					}
+
+					content.endText();
+					content.close();
+					doc.save("PDFWithText.pdf");
+					doc.close();
+
+				} catch (Exception e) {
+
+					e.printStackTrace();
+
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} finally {
+				System.out.println("Operation done.");
+			}
+
+		}
+
 		}
 	}
-}
-}
 }
